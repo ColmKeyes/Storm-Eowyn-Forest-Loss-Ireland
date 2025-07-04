@@ -1,10 +1,8 @@
 # Storm Eowyn Forest Loss Analysis - Ireland
 
-## ⚠️ Construction Warning
-This project is under active development. The processing pipeline may:
-- Require significant computational resources (16GB+ RAM recommended)
-- Generate large intermediate files (100GB+ storage needed)
-- Have dependencies on external services (ASF API, Earthdata login)
+<div align="center" style="background-color: #ffeb3b; padding: 10px; border-radius: 5px; margin-bottom: 20px;">
+  <strong>🚧 Under Construction:</strong> This documentation page is being actively developed. Content may change frequently.
+</div>
 
 ## Project Overview
 Sentinel-1 InSAR coherence pipeline for quantifying forest cover loss in Ireland caused by Storm Eowyn (January 2025). Adapts an existing Borneo forest disturbance detection pipeline for Irish conditions.
