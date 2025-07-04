@@ -1,0 +1,43 @@
+Constructive and Critical Feedback for the InSAR Forest-Disturbance Project Templates:
+
+1. Objective Clarity
+   - The objective statements are too generic. Specify measurable targets (e.g., detect >90% of storm-induced losses within 100m accuracy) to guide validation and success criteria.
+   - Clarify whether absolute area estimates or relative change metrics are the goal.
+
+2. Data Scope and Quality
+   - The templates assume Sentinel-1 data availability without accounting for acquisition gaps or quality issues (e.g., missing scenes, low coherence due to moisture). Include a data quality assessment step.
+   - The plan does not specify how to handle orbit changes, seasonal vegetation decorrelation, or layover/shadow areas common in forested terrain.
+
+3. Pipeline Dependencies
+   - Relying on the “Sentinel-1 Coherence Pipeline” is fine, but there is no version, configuration, or validation protocol defined. Document pipeline version, parameter settings, and QA thresholds.
+   - Introduce a fallback process if the pipeline fails on certain tiles.
+
+4. Reference Mask Limitations
+   - The plan uses an existing forest mask without assessing its currency or resolution. If the mask is outdated, false positives will occur. Propose a mask validation step against recent optical data or ground truth.
+   - Outline how to update or refine the forest mask if discrepancies are found.
+
+5. Metadata and Provenance
+   - Geoparquet catalog is good, but missing critical fields: processing log UUID, software version, operator initials, and checksum. These are essential for reproducibility.
+   - Define a naming convention and directory hierarchy that encodes processing date, storm event ID, and area.
+
+6. Error Handling and Edge Cases
+   - No strategy for pixels with low SNR or failed coherence computation. Insert explicit tagging of failure pixels and how to treat them in downstream analysis.
+   - Include placeholder for environmental anomalies (e.g., flooding) that could mimic disturbance signals.
+
+7. Validation and Quality Metrics
+   - Templates lack a validation plan. Propose simple sanity checks (e.g., coherence statistics histograms) and end-to-end tests using known disturbance samples.
+   - Define acceptance criteria for each data product (e.g., coherence maps must have >80% valid pixels).
+
+8. Agent Automation Feasibility
+   - Current sections mix high-level goals with low-level instructions, which may confuse an agent. Separate human guidance (intent) from machine actions (API calls, filenames).
+   - Recommend adding explicit JSON instructions for each step: command, input path, output path, success flag.
+
+9. Missing Performance Outputs
+   - There is no section for preliminary performance reporting (e.g., time to process per scene). Even dataset building needs resource estimation for agent scheduling.
+   - Add a monitoring hook in the pipeline to record runtime and memory usage.
+
+10. Success Criteria and Next Steps
+    - The templates do not define how the agent will know the dataset is “complete.” Introduce a checklist or automated verification script.
+    - Outline how the agent should hand off the generated dataset to the next analysis stage, including notification triggers or file archive procedures.
+
+Overall, embedding these critical enhancements will ensure the project is robust, reproducible, and seamlessly integrated into an automated agent workflow.

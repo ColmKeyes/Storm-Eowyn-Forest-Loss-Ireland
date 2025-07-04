@@ -1,0 +1,17 @@
+name: storm-eowyn
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.9
+  - snap-engine=8.0
+  - snappy
+  - asf-search
+  - geopandas
+  - pyarrow
+  - rasterio
+  - numpy
+  - pandas
+  - pip
+  - pip:
+    - python-dotenv

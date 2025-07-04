@@ -1,0 +1,81 @@
+# Storm Eowyn Forest Loss Project - Critical Improvement Areas
+
+## Core Plan Deficiencies
+1. **Insufficient Technical Specificity**:
+   - Missing concrete parameters for SNAP memory allocation (e.g., -Xmx16G)
+   - No defined strategy for handling SNAP memory leaks
+   - Forest mask alignment tolerances not specified (should be <0.5 pixels)
+   - Coherence window size selection lacks empirical basis
+
+2. **Validation Shortcomings**:
+   - No quantitative accuracy targets (e.g., 90% detection rate)
+   - Optical validation methodology undefined (which indices/sensors?)
+   - No provision for ground truth collection
+   - Confidence intervals missing from change detection
+
+3. **Performance Gaps**:
+   - Parallel processing strategy completely absent
+   - No batch size optimization for Irish AOI
+   - Disk I/O bottlenecks not addressed
+   - No GPU acceleration consideration
+
+## Critical Strengths to Maintain
+1. **Pipeline Structure**:
+   - Phase-based approach provides good scaffolding
+   - Component separation enables modular improvements
+   - Logical flow from data to analysis
+
+2. **Risk Awareness**:
+   - Comprehensive risk identification
+   - Subset testing strategy is sound
+   - Checkpointing addresses processing interruptions
+
+## Required Plan Improvements
+1. **Processing Optimization**:
+   - Implement multiprocessing with 4-8 worker nodes
+   - Add explicit JVM memory flags (-Xmx16G -XX:+UseG1GC)
+   - Define batch sizes (recommend 10 scenes/batch)
+   - Implement disk I/O monitoring and SSD optimization
+
+2. **Validation Framework**:
+   - Set quantitative targets (90% detection, <10% false positives)
+   - Specify Sentinel-2/MSI for optical validation
+   - Implement confusion matrix with precision/recall
+   - Add bootstrap sampling for confidence intervals
+
+3. **Technical Specifications**:
+   - Define forest mask resampling as bilinear with QA checks
+   - Implement empirical window size testing (3x3 to 7x7)
+   - Set output resolution to 20m with 0.5px alignment tolerance
+   - Add GPU acceleration options for SNAP operators
+
+4. **Timeline Realism**:
+   - Add 20% buffer for data acquisition
+   - Allocate 3 iterations for parameter tuning
+   - Include peer review phase for documentation
+   - Schedule mid-point technical review
+
+## Critical Technical Oversights
+1. **Coordinate System Risks**:
+   - No CRS validation protocol defined
+   - Transformation accuracy thresholds missing
+   - Edge case handling for Irish Grid not addressed
+
+2. **Data Pipeline Gaps**:
+   - SLC checksum verification not implemented
+   - No retry mechanism for failed downloads
+   - Scene prioritization logic missing
+
+3. **Quality Control Deficiencies**:
+   - No quantitative coherence thresholds
+   - Log analysis automation missing
+   - Visual QC lacks standardized criteria
+
+## Mandatory Revisions
+1. Implement detailed memory management protocol
+2. Develop quantitative validation framework
+3. Design parallel processing architecture
+4. Formalize forest mask specifications
+5. Revise timeline with technical buffers
+6. Add GPU acceleration assessment
+7. Implement comprehensive QC procedures
