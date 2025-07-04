@@ -65,3 +65,8 @@ venv.bak/
 # OS
 .DS_Store
 Thumbs.db
+
+# Plan files
+plan_feedback_*.txt
+Storm_Eowyn_Forest_Loss_Plan_of_Action.txt
+Spec Prompt and Plan Template.txt
